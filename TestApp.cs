@@ -9,7 +9,6 @@
 
 using System;
 using System.Threading;
-using System.Timers;
 using A01;
 
 var simulation = new Simulation();
@@ -75,7 +74,7 @@ simulation.AddSimulator(ladepark);
 
 for(long i = 0; i < 922372036854775807; i+= 300000)
 {
-    long hour = (long)(i / 3600000) % 24;
+    long hour = (i / 3600000) % 24;
     simulation.Run(i);
     Console.WriteLine($"Hour: {hour}");
     Console.WriteLine($"Ausgangsleistung der PhotovoltaikAnlage: {photovoltaikAnlage.GetOutput()} W");

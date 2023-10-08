@@ -18,7 +18,7 @@ namespace A01
         public double GeneratedPower { get; set; }
         public long CurrentTime { get; set; }
 
-        private Random random = new Random();
+        private readonly Random _random = new Random();
         public List<ISimulator> ConnectedInputs { get; set; } = new List<ISimulator>();
         public List<ISimulator> ConnectedOutputs { get; set; }= new List<ISimulator>();
 
@@ -39,7 +39,7 @@ namespace A01
         {
             // Implement your logic here to calculate GeneratedPower based on timeMs
             // Add randomness to the generated power within a certain range.
-            long hour = (long)(timeMs / 3600000) % 24; // Convert timeMs to hours
+            long hour = (timeMs / 3600000) % 24; // Convert timeMs to hours
 
             // Create a lookup table for power levels throughout the day
             Dictionary<long, double> timeOfDayPower = new Dictionary<long, double>
@@ -70,14 +70,13 @@ namespace A01
                 { 23, 100 },  // 11:00 PM
                 { 24, 10 }   // Midnight
             };
-            if (timeOfDayPower.ContainsKey(hour))
+            if (timeOfDayPower.TryGetValue(hour, out var basePower))
             {
-                double basePower = timeOfDayPower[hour];
                 double minRandomOffset = -10; // Minimum random offset
                 double maxRandomOffset = 10;  // Maximum random offset
 
                 // Add randomness to the power level
-                double randomOffset = random.NextDouble() * (maxRandomOffset - minRandomOffset) + minRandomOffset;
+                double randomOffset = _random.NextDouble() * (maxRandomOffset - minRandomOffset) + minRandomOffset;
                 double power = basePower + randomOffset;
                 return Math.Max(0, power);
             }

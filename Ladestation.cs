@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace A01
@@ -20,7 +19,7 @@ namespace A01
         public double CurrentPower { get; set; }
         public long CurrentTime { get; set; }
 
-        public bool isCharging { get; set; } = false;
+        public bool IsCharging { get; set; }
 
         
         public List<ISimulator> ConnectedInputs { get; set; } = new List<ISimulator>();
@@ -54,7 +53,7 @@ namespace A01
 
             if(r == 0)
             {
-                isCharging = !isCharging;
+                IsCharging = !IsCharging;
             }
 
             CurrentPower = 0;
@@ -71,7 +70,7 @@ namespace A01
 
                 double availablePower = (availableCapacity / (((double)timeMs - CurrentTime) / 1000 / 60 / 60)) - 5000;
 
-                if(availablePower > 0 && isCharging)
+                if(availablePower > 0 && IsCharging)
                 {
                     CurrentPower = Math.Min(MaxPower, availablePower); 
                 }

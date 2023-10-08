@@ -17,7 +17,7 @@ namespace A01
 
         public double MaxCapacity { get; set; }
 
-        public bool isFull { get; set; } = false;
+        public bool IsFull { get; set; }
         public double CurrentPower { get; set; }
         public long CurrentTime { get; set; }
         public List<ISimulator> ConnectedInputs { get; set; } = new List<ISimulator>();
@@ -53,11 +53,11 @@ namespace A01
                 int allModules = 0;
                 foreach(var module in input.ConnectedOutputs)
                 {
-                    if(module is Batteriemodul b && !b.isFull)
+                    if(module is Batteriemodul b && !b.IsFull)
                     {
                         connectedModules++;
                     }
-                    if(module is Batteriemodul b2)
+                    if(module is Batteriemodul)
                     {
                         allModules++;
                     }
@@ -84,12 +84,12 @@ namespace A01
 
             if(CurrentCapacity >= MaxCapacity)
             {
-                isFull = true;
+                IsFull = true;
                 CurrentCapacity = MaxCapacity;
             }
             else
             {
-                isFull = false;
+                IsFull = false;
             }
 
             CurrentTime = timeMs;

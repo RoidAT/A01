@@ -9,12 +9,15 @@
 
 using System.Collections.Generic;
 
-public interface ISimulator
+namespace A01
 {
-    long CurrentTime { get; set; }
-    List<ISimulator> ConnectedInputs { get; set; }
-    List<ISimulator> ConnectedOutputs { get; set; }
-    void Connect(ISimulator input);
-    void Step(long time);
-    object GetOutput();
+    public interface ISimulator
+    {
+        long CurrentTime { get; set; }
+        List<ISimulator> ConnectedInputs { get; set; }
+        List<ISimulator> ConnectedOutputs { get; set; }
+        void Connect(ISimulator input);
+        void Step(long time);
+        object GetOutput();
+    }
 }
