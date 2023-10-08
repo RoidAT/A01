@@ -70,9 +70,9 @@ namespace A01
 
                 foreach(var battery in ConnectedOutputs)
                 {
-                    foreach(var park in battery.ConnectedOutputs)
+                    foreach(var inverter in battery.ConnectedOutputs)
                     {
-                        if(park.GetOutput() is double used)
+                        if(inverter.GetOutput() is double used)
                         {
                             CurrentPower -= used / allModules;
                         }

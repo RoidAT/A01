@@ -28,6 +28,7 @@ var solarmodul11 = new Solarmodul();
 var solarmodul12 = new Solarmodul();
 var solarmodulString = new SolarmodulString();
 var wechselrichter = new Wechselrichter();
+var wechselrichterNetz = new Wechselrichter();
 var photovoltaikAnlage = new PhotovoltaikAnlage();
 var batteriemodul = new Batteriemodul(100000);
 var batteriemodul2 = new Batteriemodul(100000);
@@ -51,18 +52,19 @@ solarmodulString.Connect(solarmodul9);
 solarmodulString.Connect(solarmodul10);
 solarmodulString.Connect(solarmodul11);
 solarmodulString.Connect(solarmodul12);
-photovoltaikAnlage.Connect(solarmodulString);
+wechselrichter.Connect(solarmodulString);
+//photovoltaikAnlage.Connect(solarmodulString);
 photovoltaikAnlage.Connect(wechselrichter);
 batteriemodul.Connect(photovoltaikAnlage);
 batteriemodul2.Connect(photovoltaikAnlage);
 batteriespeicher.Connect(batteriemodul);
 batteriespeicher.Connect(batteriemodul2);
-ladepark.Connect(batteriespeicher);
+ladepark.Connect(wechselrichterNetz);
 ladestation.Connect(ladepark);
 ladestation2.Connect(ladepark);
 ladestation3.Connect(ladepark);
 ladestation4.Connect(ladepark);
-
+wechselrichterNetz.Connect(batteriespeicher);
 
 // Fügen Sie die Simulatoren zur Simulation hinzu
 simulation.AddSimulator(photovoltaikAnlage);
@@ -86,6 +88,7 @@ for(long i = 0; i < 922372036854775807; i+= 300000)
     Console.WriteLine($"Station3: {ladestation3.GetOutput()} W");
     Console.WriteLine($"Station4: {ladestation4.GetOutput()} W");
     Console.WriteLine($"Park: {ladepark.GetOutput()} W");
+    Console.WriteLine($"WechselrichterNetz: {wechselrichterNetz.GetOutput()}");
     Console.WriteLine("");
     Console.WriteLine("");
     Thread.Sleep(100);

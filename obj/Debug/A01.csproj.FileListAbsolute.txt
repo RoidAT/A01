@@ -11,3 +11,9 @@ C:\Users\RaedN\OneDrive\Desktop\A01\obj\Debug\A01.csproj.AssemblyReference.cache
 C:\Users\RaedN\OneDrive\Desktop\A01\obj\Debug\A01.csproj.CoreCompileInputs.cache
 C:\Users\RaedN\OneDrive\Desktop\A01\obj\Debug\A01.exe
 C:\Users\RaedN\OneDrive\Desktop\A01\obj\Debug\A01.pdb
+C:\Users\RaedN\OneDrive\Schule\Studium\WS23\NET\obj\Debug\A01.csproj.AssemblyReference.cache
+C:\Users\RaedN\OneDrive\Schule\Studium\WS23\NET\obj\Debug\A01.csproj.CoreCompileInputs.cache
+C:\Users\RaedN\OneDrive\Schule\Studium\WS23\NET\obj\Debug\A01.exe
+C:\Users\RaedN\OneDrive\Schule\Studium\WS23\NET\obj\Debug\A01.pdb
+C:\Users\RaedN\OneDrive\Schule\Studium\WS23\NET\bin\Debug\A01.exe
+C:\Users\RaedN\OneDrive\Schule\Studium\WS23\NET\bin\Debug\A01.pdb

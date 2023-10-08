@@ -17,26 +17,21 @@ namespace A01
         public long CurrentTime { get; set; }
         public List<ISimulator> ConnectedInputs { get; set; } = new List<ISimulator>();
         public List<ISimulator> ConnectedOutputs { get; set; } = new List<ISimulator>();
-        public Wechselrichter Inverter { get; private set; }
+        //public Wechselrichter Inverter { get; private set; }
 
         public double CurrentPower { get; private set; }
 
         public void Connect(ISimulator input)
         {
-            if (input is SolarmodulString solarmodulString)
+            //if (input is SolarmodulString solarmodulString)
+            //{
+            //    ConnectedInputs.Add(solarmodulString);
+            //    // Wenn ein Wechselrichter bereits verbunden ist, füge den SolarmodulString hinzu
+            //   //Inverter?.Connect(solarmodulString);
+            //}
+            if (input is Wechselrichter wechselrichter)
             {
-                ConnectedInputs.Add(solarmodulString);
-                // Wenn ein Wechselrichter bereits verbunden ist, füge den SolarmodulString hinzu
-                Inverter?.Connect(solarmodulString);
-            }
-            else if (input is Wechselrichter wechselrichter)
-            {
-                Inverter = wechselrichter;
-                // Füge alle bisher verbundenen SolarmodulStrings zum Wechselrichter hinzu
-                foreach (var moduleString in ConnectedInputs)
-                {
-                    Inverter.Connect(moduleString);
-                }
+                ConnectedInputs.Add(input);
                 input.ConnectedOutputs.Add(this);
             }
             else
@@ -51,13 +46,18 @@ namespace A01
             if(timeMs == CurrentTime) return;
             CurrentTime = timeMs;
 
-            if (Inverter == null)
+            CurrentPower = 0;
+
+            foreach(var inverter in ConnectedInputs)
             {
-                throw new InvalidOperationException("Es wurde kein Wechselrichter mit der PhotovoltaikAnlage verbunden.");
+                if(inverter is Wechselrichter wechselrichter)
+                {
+                    wechselrichter.Step(timeMs);
+                    CurrentPower += (double)wechselrichter.GetOutput();
+                }
             }
 
-            Inverter.Step(timeMs);
-            CurrentPower = (double)Inverter.GetOutput();
+            
         }
 
         public object GetOutput()

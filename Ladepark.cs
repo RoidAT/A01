@@ -22,7 +22,7 @@ namespace A01
 
         public void Connect(ISimulator input)
         {
-            if (input is Batteriespeicher)
+            if (input is Wechselrichter)
             {
                 ConnectedInputs.Add(input);
                 input.ConnectedOutputs.Add(this);
@@ -48,6 +48,11 @@ namespace A01
                     CurrentPower += output;
                 }
                 
+            }
+
+            foreach(var inverter in ConnectedInputs)
+            {
+                inverter.Step(timeMs);
             }
 
             CurrentTime = timeMs;

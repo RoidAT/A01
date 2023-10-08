@@ -60,12 +60,19 @@ namespace A01
             double availableCapacity = 0;
             foreach (var input in ConnectedInputs)
             {
-                foreach (var battery in input.ConnectedInputs)
+                foreach (var inverter in input.ConnectedInputs)
                 {
-                    if (battery is Batteriespeicher b)
+                    foreach (var battery in inverter.ConnectedInputs)
                     {
-                        availableCapacity += b.CurrentCapacity;
+                        if (battery is Batteriespeicher b)
+                        {
+                            if(b.GetOutput() is double output)
+                            {
+                                availableCapacity += output;
+                            }
+                        }
                     }
+                    //inverter.Step(timeMs);
                 }
 
                 double availablePower = (availableCapacity / (((double)timeMs - CurrentTime) / 1000 / 60 / 60)) - 5000;
@@ -74,11 +81,6 @@ namespace A01
                 {
                     CurrentPower = Math.Min(MaxPower, availablePower); 
                 }
-                //else
-                //{
-                //    isCharging = false;
-                //}
-
             }
 
             CurrentTime = timeMs;
