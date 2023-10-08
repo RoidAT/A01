@@ -1,5 +1,5 @@
 ﻿/*
- * Simulation.cs
+ * Solarmodul.cs
  * ---
  * Author: René Schütz
  * Das Solarmodul soll basierend auf der aktuellen Uhrzeit und der Position der Sonne die aktuelle Leistung berechnen.

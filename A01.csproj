@@ -46,7 +46,7 @@
     <Compile Include="Ladepark.cs" />
     <Compile Include="Ladestation.cs" />
     <Compile Include="PhotovoltaikAnlage.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="TestApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Simulation.cs" />
     <Compile Include="Solarmodul.cs" />

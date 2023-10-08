@@ -1,7 +1,7 @@
 ﻿/*
- * Simulation.cs
+ * Ladepark.cs
  * ---
- * Author: René Schütz
+ * Author: Marcel Schörghuber
  * Das Solarmodul soll basierend auf der aktuellen Uhrzeit und der Position der Sonne die aktuelle Leistung berechnen.
  * in der GetOutput Methode soll die aktuelle Leistung ausgegeben werden.
  * ---

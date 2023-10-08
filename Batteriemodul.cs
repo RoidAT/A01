@@ -1,9 +1,8 @@
 ﻿/*
- * Simulation.cs
+ * Batteriemodul.cs
  * ---
- * Author: René Schütz
- * Das Solarmodul soll basierend auf der aktuellen Uhrzeit und der Position der Sonne die aktuelle Leistung berechnen.
- * in der GetOutput Methode soll die aktuelle Leistung ausgegeben werden.
+ * Author: Marcel Schörghuber
+ * Das Batteriemodul simuliert einen Batteriespeicher. Es hat eine maximale Kapazität und kann sich selbst entladen.
  * ---
  */
 

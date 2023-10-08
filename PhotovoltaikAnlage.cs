@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * PhotovoltaikAnlage.cs
+ * ---
+ * Author: René Schütz, Marlene Berger
+ * Die PhotovoltaikAnlage besteht aus mehreren SolarmodulStrings und einem Wechselrichter.
+ * Die GetOutput Methode soll die aktuelle Leistung ausgeben.
+ * ---
+ */
+
+using System;
 using System.Collections.Generic;
 
 namespace A01

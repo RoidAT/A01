@@ -1,4 +1,12 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * Wechselrichter.cs
+ * ---
+ * Author: René Schütz
+ * Der Wechselrichter soll die Leistung aller angeschlossenen Solarmodule addieren und die Effizienz berücksichtigen.
+ * Die GetOutput Methode soll die aktuelle Leistung ausgeben.
+ * ---
+ */
+using System.Collections.Generic;
 
 namespace A01
 {

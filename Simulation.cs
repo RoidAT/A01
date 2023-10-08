@@ -1,9 +1,9 @@
-﻿/*
+﻿﻿/*
  * Simulation.cs
  * ---
  * Author: René Schütz
- * Contains the Simulation class.
- * This class is used to create a simulation object.
+ * Der Simulationsklasse kann mehrere Simulations Objekte gegeben werden welche durch die Step Methode simuliert werden.
+ * 
  * ---
  */
 

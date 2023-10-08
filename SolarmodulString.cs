@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * SolarmodulString.cs
+ * ---
+ * Author: René Schütz
+ * Der SolarmodulString, besteht aus mehreren Solarmodulen und soll die Leistung der einzelnen Solarmodule addieren.
+ * die GetOutput Methode gibt die aktuelle Leistung aller Solarmodule aus.
+ * ---
+ */
+
+using System;
 using System.Collections.Generic;
 
 namespace A01

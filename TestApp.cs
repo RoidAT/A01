@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * TestApp.cs
+ * ---
+ * Author: René Schütz, Marcel Schörghuber, Marlene Berger
+ * Diese Test App erstellt einige Simulatoren und verknüpft diese miteinander.
+ * Anschließend wird die Simulation ausgeführt und die Ausgangsleistung der PhotovoltaikAnlage ausgegeben.
+ * ---
+ */
+
+using System;
 using System.Threading;
 using System.Timers;
 using A01;
