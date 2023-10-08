@@ -1,0 +1,7 @@
+C:\Users\roid\RiderProjects\A01\A01\obj\Debug\A01.csproj.AssemblyReference.cache
+C:\Users\roid\RiderProjects\A01\A01\obj\Debug\A01.csproj.SuggestedBindingRedirects.cache
+C:\Users\roid\RiderProjects\A01\A01\obj\Debug\A01.csproj.CoreCompileInputs.cache
+C:\Users\roid\RiderProjects\A01\A01\bin\Debug\A01.exe
+C:\Users\roid\RiderProjects\A01\A01\bin\Debug\A01.pdb
+C:\Users\roid\RiderProjects\A01\A01\obj\Debug\A01.exe
+C:\Users\roid\RiderProjects\A01\A01\obj\Debug\A01.pdb
