@@ -32,5 +32,3 @@ simulation.AddSimulator(photovoltaikAnlage);
 
 // Führen Sie die Simulation aus
 simulation.Run(1000);
-
-Console.WriteLine($"Ausgangsleistung der PhotovoltaikAnlage: {photovoltaikAnlage.GetOutput()} W");

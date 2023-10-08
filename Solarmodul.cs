@@ -14,6 +14,8 @@ namespace A01
 {
     public class Solarmodul : ISimulator
     {
+        public double MaxPower = 400; //in Watt
+        public double SunEfficiency = 1; //in Prozent
         public double CurrentPower { get; set; }
         public double GeneratedPower { get; set; }
         public long CurrentTime { get; set; }
@@ -37,7 +39,8 @@ namespace A01
         {
             if(timeMs == CurrentTime) return; //Don't step twice
             CurrentTime = timeMs;
-            GeneratedPower = 500; //TODO: Implement based on Time of Day (and Sun Position). For now just set to 500
+            //TODO: Implement SunEfficiency
+            GeneratedPower = MaxPower * SunEfficiency;
             CurrentPower = GeneratedPower;
 
             foreach (var input in ConnectedInputs)

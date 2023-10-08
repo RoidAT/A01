@@ -10,24 +10,23 @@
 using System;
 using System.Collections.Generic;
 
-namespace A01
-{
-    public class Simulation
-    {
+namespace A01{
+    public class Simulation {
         public List<ISimulator> Simulators { get; private set; } = new List<ISimulator>();
-
-        // Ein Simulator zur Simulation hinzufügen
-        public void AddSimulator(ISimulator simulator)
-        {
+        public long StepSize { get; set; } = 1; // Standardwert ist 1
+        public double SimulationSpeed { get; set; } = 1.0; // Standardwert ist Echtzeit
+        
+        public void AddSimulator(ISimulator simulator) {
             Simulators.Add(simulator);
         }
-
-        // Die Step Methode für alle Simulatoren ausführen
-        public void Run(long timeMs)
-        {
-            foreach (var simulator in Simulators)
-            {
-                simulator.Step(timeMs);
+        
+        public void Run(long timeMs) {
+            long adjustedTime = (long)(timeMs * SimulationSpeed);
+            for(long i = 0; i < adjustedTime; i += StepSize) {
+                foreach (var simulator in Simulators) {
+                    simulator.Step(StepSize);
+                    Console.WriteLine($"Ausgangsleistung der PhotovoltaikAnlage: {simulator.GetOutput()} W");
+                }
             }
         }
     }
