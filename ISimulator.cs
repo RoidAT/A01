@@ -2,8 +2,9 @@
  * ISimulator.cs
  * ---
  * Author: René Schütz
- * This interface is used to create a simulator object.
- * In the simulation the simulator objects are connected to each other. and are calling the Step method on each other.
+ * Das Interface für alle Simulatoren beinhaltet alle Methoden und Properties welche ein Simulator implementieren muss.
+ * In der Simulation werden die Simulator Objekte miteinander verbunden und rufen die Step Methoden der verbundenen
+ * Objekte auf.
  * ---
  */
 

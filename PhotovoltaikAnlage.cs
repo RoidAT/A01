@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+ * Simulation.cs
+ * ---
+ * Author: René Schütz
+ * Die PhotovoltaikAnlage besteht aus mehreren SolarmodulStrings und einem Wechselrichter.
+ * Die GetOutput Methode soll die aktuelle Leistung ausgeben.
+ * ---
+ */
+
+
+using System;
 using System.Collections.Generic;
 
 namespace A01
@@ -17,13 +27,11 @@ namespace A01
             if (input is SolarmodulString solarmodulString)
             {
                 ConnectedInputs.Add(solarmodulString);
-                // Wenn ein Wechselrichter bereits verbunden ist, füge den SolarmodulString hinzu
                 Inverter?.Connect(solarmodulString);
             }
             else if (input is Wechselrichter wechselrichter)
             {
                 Inverter = wechselrichter;
-                // Füge alle bisher verbundenen SolarmodulStrings zum Wechselrichter hinzu
                 foreach (var moduleString in ConnectedInputs)
                 {
                     Inverter.Connect(moduleString);

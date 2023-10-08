@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * TestApp.cs
+ * ---
+ * Author: René Schütz
+ * Diese Test App erstellt einige Simulatoren und verknüpft diese miteinander.
+ * Anschließend wird die Simulation ausgeführt und die Ausgangsleistung der PhotovoltaikAnlage ausgegeben.
+ * ---
+ */
+
+using System;
 using A01;
 
 var simulation = new Simulation();

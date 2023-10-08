@@ -1,10 +1,21 @@
 ﻿using System.Collections.Generic;
+/*
+ * Simulation.cs
+ * ---
+ * Author: René Schütz
+ * Der Wechselrichter soll die Leistung aller angeschlossenen Solarmodule addieren und die Effizienz berücksichtigen.
+ * Die GetOutput Methode soll die aktuelle Leistung ausgeben.
+ * ---
+ */
+
 
 namespace A01
 {
     public class Wechselrichter : ISimulator
     {
         private const double Efficiency = 0.99;
+        //TODO: Implement MaxPower
+        //public double MaxPower { get; set; }
         public long CurrentTime { get; set; }
         public List<ISimulator> ConnectedInputs { get; set; } = new List<ISimulator>();
         public List<ISimulator> ConnectedOutputs { get; set; } = new List<ISimulator>();
