@@ -51,17 +51,33 @@ namespace A01
             foreach (var input in ConnectedInputs)
             {
                 int connectedModules = 0;
+                int allModules = 0;
                 foreach(var module in input.ConnectedOutputs)
                 {
                     if(module is Batteriemodul b && !b.isFull)
                     {
                         connectedModules++;
                     }
+                    if(module is Batteriemodul b2)
+                    {
+                        allModules++;
+                    }
                 }
                 // Check if module output is a double and add it to the total power
                 if (input.GetOutput() is double output)
                 {
                     CurrentPower += output / connectedModules;
+                }
+
+                foreach(var battery in ConnectedOutputs)
+                {
+                    foreach(var park in battery.ConnectedOutputs)
+                    {
+                        if(park.GetOutput() is double used)
+                        {
+                            CurrentPower -= used / allModules;
+                        }
+                    }
                 }
             }
 

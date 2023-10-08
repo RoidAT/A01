@@ -43,6 +43,8 @@
     <Compile Include="Batteriemodul.cs" />
     <Compile Include="Batteriespeicher.cs" />
     <Compile Include="ISimulator.cs" />
+    <Compile Include="Ladepark.cs" />
+    <Compile Include="Ladestation.cs" />
     <Compile Include="PhotovoltaikAnlage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
