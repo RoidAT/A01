@@ -11,6 +11,8 @@ using System;
 using System.Threading;
 using A01;
 
+long simulationsGeschwindigkeit = 1000;
+
 var simulation = new Simulation();
 
 // Erstellen Sie einige Simulatoren
@@ -74,7 +76,7 @@ simulation.AddSimulator(ladepark);
 // Führen Sie die Simulation aus
 
 
-for(long i = 0; i < 922372036854775807; i+= 300000)
+for(long i = 0; i < 922372036854775807; i+= 250 * simulationsGeschwindigkeit)
 {
     long hour = (i / 3600000) % 24;
     simulation.Run(i);

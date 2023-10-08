@@ -23,12 +23,6 @@ namespace A01
 
         public void Connect(ISimulator input)
         {
-            //if (input is SolarmodulString solarmodulString)
-            //{
-            //    ConnectedInputs.Add(solarmodulString);
-            //    // Wenn ein Wechselrichter bereits verbunden ist, füge den SolarmodulString hinzu
-            //   //Inverter?.Connect(solarmodulString);
-            //}
             if (input is Wechselrichter wechselrichter)
             {
                 ConnectedInputs.Add(input);
@@ -38,7 +32,6 @@ namespace A01
             {
                 throw new InvalidOperationException("Nur SolarmodulStrings oder Wechselrichter können an eine PhotovoltaikAnlage angeschlossen werden.");
             }
-
         }
 
         public void Step(long timeMs)
@@ -60,6 +53,7 @@ namespace A01
             
         }
 
+        
         public object GetOutput()
         {
             return CurrentPower;

@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace A01
 {
@@ -35,13 +36,16 @@ namespace A01
             }
         }
 
+        /// <summary>
+        /// Calculates a random power output of the solar module based on current time
+        /// </summary>
+        /// <param name="timeMs"></param>
+        /// <returns></returns>
         private double CalculateGeneratedPower(long timeMs)
         {
-            // Implement your logic here to calculate GeneratedPower based on timeMs
-            // Add randomness to the generated power within a certain range.
-            long hour = (timeMs / 3600000) % 24; // Convert timeMs to hours
+            long hour = (timeMs / 3600000) % 24; 
 
-            // Create a lookup table for power levels throughout the day
+
             Dictionary<long, double> timeOfDayPower = new Dictionary<long, double>
             {
                 { 0, 10 },   // Midnight
@@ -72,27 +76,25 @@ namespace A01
             };
             if (timeOfDayPower.TryGetValue(hour, out var basePower))
             {
-                double minRandomOffset = -10; // Minimum random offset
-                double maxRandomOffset = 10;  // Maximum random offset
+                double minRandomOffset = -10;
+                double maxRandomOffset = 10;
 
-                // Add randomness to the power level
                 double randomOffset = _random.NextDouble() * (maxRandomOffset - minRandomOffset) + minRandomOffset;
                 double power = basePower + randomOffset;
+                Thread.Sleep(10);
                 return Math.Max(0, power);
             }
             else
             {
-                // Default power level for times not in the lookup table
-                return 5000; // Adjust this value as needed
+                return 0;
             }
-            
         }
 
         public void Step(long timeMs)
         {
             if(timeMs == CurrentTime) return; //Don't step twice
             CurrentTime = timeMs;
-            GeneratedPower = CalculateGeneratedPower(timeMs); //TODO: Implement based on Time of Day (and Sun Position). For now just set to 500
+            GeneratedPower = CalculateGeneratedPower(timeMs); 
             CurrentPower = GeneratedPower;
 
             foreach (var input in ConnectedInputs)
