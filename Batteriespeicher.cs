@@ -12,26 +12,18 @@ using System.Collections.Generic;
 
 namespace A01
 {
-    public class Batteriemodul : ISimulator
+    public class Batteriespeicher : ISimulator
     {
         public double CurrentCapacity { get; set; }
 
-        public double MaxCapacity { get; set; }
-
-        public bool isFull { get; set; } = false;
-        public double CurrentPower { get; set; }
+        public double MaxCapacity { get; set; } = 1000000;
         public long CurrentTime { get; set; }
         public List<ISimulator> ConnectedInputs { get; set; } = new List<ISimulator>();
         public List<ISimulator> ConnectedOutputs { get; set; } = new List<ISimulator>();
 
-        public Batteriemodul(double maxCap)
-        {
-            MaxCapacity = maxCap;
-        }
-
         public void Connect(ISimulator input)
         {
-            if (input is PhotovoltaikAnlage)
+            if (input is Batteriemodul)
             {
                 ConnectedInputs.Add(input);
                 input.ConnectedOutputs.Add(this);
@@ -42,43 +34,23 @@ namespace A01
             }
         }
 
+
+
         public void Step(long timeMs)
         {
             if (timeMs == CurrentTime) return; //Don't step twice
 
-            CurrentPower = 0;
+            CurrentCapacity = 0;
 
             foreach (var input in ConnectedInputs)
             {
-                int connectedModules = 0;
-                foreach(var module in input.ConnectedOutputs)
-                {
-                    if(module is Batteriemodul b && !b.isFull)
-                    {
-                        connectedModules++;
-                    }
-                }
+                input.Step(timeMs);
                 // Check if module output is a double and add it to the total power
                 if (input.GetOutput() is double output)
                 {
-                    CurrentPower += output / connectedModules;
+                    CurrentCapacity += output;
                 }
             }
-
-            CurrentCapacity += ((timeMs - CurrentTime) * CurrentPower) / 3600000; // Calculate the CurrentCapacity based on time passed and CurrentPower in Wh
-
-            CurrentCapacity = Math.Min(CurrentCapacity, MaxCapacity); // Clamp CurrentCapacity to MaxCapacity
-            if(CurrentCapacity >= MaxCapacity)
-            {
-                isFull = true;
-                CurrentCapacity = MaxCapacity;
-            }
-            else
-            {
-                isFull = false;
-            }
-
-            CurrentTime = timeMs;
         }
 
         public object GetOutput()
