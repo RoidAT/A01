@@ -64,7 +64,7 @@ namespace A01
                     }
                 }
                 // Check if module output is a double and add it to the total power
-                if (input.GetOutput() is double output)
+                if (input.GetOutput() is double output && connectedModules != 0)
                 {
                     CurrentPower += output / connectedModules;
                 }
@@ -83,7 +83,6 @@ namespace A01
 
             CurrentCapacity += ((timeMs - CurrentTime) * CurrentPower) / 3600000; // Calculate the CurrentCapacity based on time passed and CurrentPower in Wh
 
-            CurrentCapacity = Math.Min(CurrentCapacity, MaxCapacity); // Clamp CurrentCapacity to MaxCapacity
             if(CurrentCapacity >= MaxCapacity)
             {
                 isFull = true;

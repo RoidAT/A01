@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Timers;
 using A01;
 
 var simulation = new Simulation();
@@ -8,15 +9,24 @@ var simulation = new Simulation();
 var solarmodul1 = new Solarmodul();
 var solarmodul2 = new Solarmodul();
 var solarmodul3 = new Solarmodul();
+var solarmodul4 = new Solarmodul();
+var solarmodul5 = new Solarmodul();
+var solarmodul6 = new Solarmodul();
+var solarmodul7 = new Solarmodul();
+var solarmodul8 = new Solarmodul();
+var solarmodul9 = new Solarmodul();
+var solarmodul10 = new Solarmodul();
+var solarmodul11 = new Solarmodul();
+var solarmodul12 = new Solarmodul();
 var solarmodulString = new SolarmodulString();
 var wechselrichter = new Wechselrichter();
 var photovoltaikAnlage = new PhotovoltaikAnlage();
-var batteriemodul = new Batteriemodul(100);
-var batteriemodul2 = new Batteriemodul(1000);
+var batteriemodul = new Batteriemodul(100000);
+var batteriemodul2 = new Batteriemodul(100000);
 var batteriespeicher = new Batteriespeicher();
-var ladestation = new Ladestation(1000);
-var ladestation2 = new Ladestation(10000);
-var ladestation3 = new Ladestation(100);
+var ladestation = new Ladestation(6000);
+var ladestation2 = new Ladestation(2000);
+var ladestation3 = new Ladestation(1000);
 var ladestation4 = new Ladestation(3000);
 var ladepark = new Ladepark();
 
@@ -24,6 +34,15 @@ var ladepark = new Ladepark();
 solarmodulString.Connect(solarmodul1);
 solarmodulString.Connect(solarmodul2);
 solarmodulString.Connect(solarmodul3);
+solarmodulString.Connect(solarmodul4);
+solarmodulString.Connect(solarmodul5);
+solarmodulString.Connect(solarmodul6);
+solarmodulString.Connect(solarmodul7);
+solarmodulString.Connect(solarmodul8);
+solarmodulString.Connect(solarmodul9);
+solarmodulString.Connect(solarmodul10);
+solarmodulString.Connect(solarmodul11);
+solarmodulString.Connect(solarmodul12);
 photovoltaikAnlage.Connect(solarmodulString);
 photovoltaikAnlage.Connect(wechselrichter);
 batteriemodul.Connect(photovoltaikAnlage);
@@ -45,9 +64,11 @@ simulation.AddSimulator(ladepark);
 // Führen Sie die Simulation aus
 
 
-for(int i = 1000; i < 100000; i+= 1000)
+for(long i = 0; i < 922372036854775807; i+= 300000)
 {
+    long hour = (long)(i / 3600000) % 24;
     simulation.Run(i);
+    Console.WriteLine($"Hour: {hour}");
     Console.WriteLine($"Ausgangsleistung der PhotovoltaikAnlage: {photovoltaikAnlage.GetOutput()} W");
     Console.WriteLine($"Cap1: {batteriemodul.GetOutput()} Wh");
     Console.WriteLine($"Cap2: {batteriemodul2.GetOutput()} Wh");
@@ -57,7 +78,9 @@ for(int i = 1000; i < 100000; i+= 1000)
     Console.WriteLine($"Station3: {ladestation3.GetOutput()} W");
     Console.WriteLine($"Station4: {ladestation4.GetOutput()} W");
     Console.WriteLine($"Park: {ladepark.GetOutput()} W");
-    Thread.Sleep(1000);
+    Console.WriteLine("");
+    Console.WriteLine("");
+    Thread.Sleep(100);
 }
 
 
